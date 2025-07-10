@@ -1,0 +1,203 @@
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<div class="main-container">
+    <div class="text-content">
+        <h3 class="subtitle">PricePredictor Real Estate Price Forecast Calculator</h3>
+        <h1 class="main-title">ONLINE REAL ESTATE PRICE<br>PREDICTION</h1>
+        <p class="description">
+            A smart tool for property owners, agents, and investors. Use this calculator to accurately
+            predict real estate prices based on data and statistics.
+        </p>
+    </div>
+    <div class="main-logo-container">
+        <div class="animation-box">
+          <div class="logo-container-animation">
+            <div class="house-frame"></div>
+            <div class="house-inner"></div>
+            <div class="window">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="notification">
+    <div class="notification-text">DETAILS</div>
+    <div class="icon-wrapper">
+        <div class="arrow">
+            <div class="arrow-line left"></div>
+            <div class="arrow-line right"></div>
+        </div>
+        <div class="arrow">
+            <div class="arrow-line left"></div>
+            <div class="arrow-line right"></div>
+        </div>
+        <div class="arrow">
+            <div class="arrow-line left"></div>
+            <div class="arrow-line right"></div>
+        </div>
+    </div>
+</div>
+
+<div class="main-button-container">
+    <a href="{{url_for('.predict_')}}">
+        <div class="button-predict">Try it</div>
+    </a>
+</div>
+
+<div class="main-prediction-benefits">
+    <h1>Our real estate price prediction service allows you to:</h1>
+    <div class="benefits-grid">
+        <div class="benefit-item">
+            <span class="benefit-number">01</span>
+            <p>Quickly estimate the future value of real estate properties</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-number">02</span>
+            <p>Avoid complex manual analytical calculations</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-number">03</span>
+            <p>Make informed decisions about buying or selling</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-number">04</span>
+            <p>Get data-driven price predictions</p>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-number">05</span>
+            <p>Enjoy ease of use and access to real estate statistics</p>
+        </div>
+    </div>
+</div>
+
+<div class="main-container">
+  <div class="text-content-two">
+    <p class="subtitle">Histogram-based Gradient Boosting for Regression</p>
+    <h2 class="main-title">Real Estate Price Prediction Model</h2>
+    <br>
+        <p class="description-two">
+            For accurate price prediction, we use a modern model
+        <strong><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html" target="_blank">HistGradientBoostingRegressor</a></strong> implementing gradient boosting on decision trees.
+            This ensemble model ensures high accuracy by detecting nonlinear relationships
+            and efficiently handling complex datasets.
+        </p>
+        <br>
+        <p class="description-two">
+            The model takes numerical inputs (area, number of rooms) and categorical
+            features (district, house type), building a sequence of decision trees that minimize prediction error.
+            Thanks to histogram binning and built-in handling of missing values, the model is effective
+            even on large and heterogeneous datasets.
+        </p>
+        <br>
+        <div class="description-two">
+            <strong>Key Features:</strong>
+            <p>•&nbsp;&nbsp;Uses histogram binning to speed up training and reduce memory usage.</p>
+            <p>•&nbsp;&nbsp;Automatically handles missing values and categorical features without extra preprocessing.</p>
+            <p>•&nbsp;&nbsp;Applies regularization (tree depth limits, L2 regularization) and early stopping to prevent overfitting.</p>
+            <p>•&nbsp;&nbsp;Provides high accuracy by modeling nonlinear feature interactions.</p>
+        </div>
+  </div>
+  <div class="image-container-two">
+    <img src="{{ url_for('static', filename='images/imgcon32.png') }}" alt="Property Prediction Model">
+  </div>
+</div>
+
+<div class="faq-modern">
+  <h1 class="faq-modern-title">FAQ</h1>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      How does the model make predictions?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>It analyzes the entered property features (area, number of rooms, location, etc.) and predicts the price based on the trained ensemble model.</p>
+    </div>
+  </div>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      What is the difference between the "Predict" and "Predictions" pages?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>The "Predict" page is the main form for price prediction. The "Predictions" page shows the history of all previous predictions made on the platform, with search capabilities.</p>
+    </div>
+  </div>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      What is the purpose of the "DataFrame" page?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>The "DataFrame" page displays a table with real estate data used for training the model. The data can be filtered and searched.</p>
+    </div>
+  </div>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      What will I see on the "Statistics" page?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>This page presents analytics, summary statistics, and dynamic charts that help better understand market trends.</p>
+    </div>
+  </div>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      Why register or log in?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>After logging in, you gain access to the "Profile" page where your personal predictions are saved. You can view, analyze, and delete your requests.</p>
+    </div>
+  </div>
+
+  <div class="faq-modern-item">
+    <button class="faq-modern-question">
+      Can I download or export the results?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-modern-answer">
+      <p>This feature is currently under development. Soon, you will be able to export data in CSV or PDF formats.</p>
+    </div>
+  </div>
+
+    <div class="faq-modern-item">
+      <button class="faq-modern-question">
+        How accurate is the prediction model?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-modern-answer">
+        <p>
+          The model used for prediction shows <strong style="font-weight: 500;">quite high accuracy</strong> —
+          it explains about <strong style="font-weight: 500;">{{ (metrics['R2'] * 100) | round(0) | int }}% of price variance</strong> in real estate. The average prediction error is
+          approximately <strong style="font-weight: 500;">${{ metrics['MAE'] | round(2) }}</strong>.
+        </p>
+      </div>
+    </div>
+</div>
+
+<button id="backToTop" onclick="scrollToTop()">
+    <span class="arrow">↑</span>
+    <span class="text">Top</span>
+</button>
+
+<script src="{{url_for('static', filename=js_href1)}}"></script>
+<script src="{{url_for('static', filename=js_href2)}}"></script>
+
+{% endblock %}

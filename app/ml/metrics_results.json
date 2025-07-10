@@ -1,0 +1,18 @@
+{
+    "_comment": "app/ml/metrics_results.json",
+    "MSE": 291367737.6665,
+    "RMSE": 17069.4973,
+    "MSPE": 4.0735,
+    "MAE": 9557.5047,
+    "MAPE": 14.8738,
+    "SMAPE": 14.5559,
+    "MASE": 0.3564,
+    "MRE": 0.1487,
+    "RMSLE": 0.1947,
+    "R2": 0.8217,
+    "Adjusted_R2": 0.8198
+}
+
+
+
+

@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<div class="container">
+    <div id="user" class="card user-card"></div>
+
+    <div id="predictions" class="card predictions-card"></div>
+
+    <div class="card chart-card" id="chart-wrapper">
+        <h3>Predictions Chart</h3>
+        <canvas id="chart" width="600" height="300"></canvas>
+    </div>
+    <div class="setting-block">
+        <button id="settings-btn" class="settings-btn">
+            <img src="{{ url_for('static', filename='images/gear.png') }}" alt="Settings">
+        </button>
+    </div>
+</div>
+
+<div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<div id="change-data-modal" class="change-data-modal" style="display:none;">
+    <div class="setting-content">
+        <span class="close-setting" onclick="closeSettingModal()">&times;</span>
+        <div id="setting-body"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ url_for('static', filename=js_href1) }}"></script>
+<script src="{{ url_for('static', filename=js_href2) }}"></script>
+<script src="{{ url_for('static', filename=js_href3) }}"></script>
+
+{% endblock %}

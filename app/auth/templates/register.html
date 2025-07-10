@@ -1,0 +1,43 @@
+<!-- app/auth/templates/register.html -->
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <form action="{{url_for('auth.register')}}" method="post" id="register-form" class="register">
+        <h1>Sign Up</h1>
+        <br>
+        <div class="form-group-register">
+            <p><label>First Name: </label><input type="text" name="name" value="" required/></p>
+            <p><label>Email: </label><input type="email" name="mail" value="" required/></p>
+            <p><label>Password: </label><input type="password" name="psw" value="" required/></p>
+            <p><label>Confirm Password: </label><input type="password" name="psw2" value="" required/></p>
+        </div>
+        <div class="form-actions-register">
+            <label class="submit-button">
+                <input type="submit" value="Register">
+                <span>Register</span>
+            </label>
+        </div>
+        <div class="login-form-group-href">
+            <a href="{{url_for('auth.login')}}">Already have an account? Sign In</a>
+        </div>
+        <div class="flash-container">
+            <div class="flash-messages">
+                {% with flashed_message = get_flashed_messages(True) | first %}
+                {% if flashed_message %}
+                <div class="messagetxt {{ flashed_message[0] }}">{{ flashed_message[1] }}</div>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="overlay"></div>
+<div id="animation-container"></div>
+
+{% endblock %}

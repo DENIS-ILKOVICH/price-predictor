@@ -1,0 +1,315 @@
+/* app/static/css/register.css */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f9f9f9;
+    padding: 5vh 5vw;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.register {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 90vw;
+    min-width: 280px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: slideUp 0.8s ease-in-out;
+}
+
+.register h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #7D3C98;
+
+}
+
+.form-group-register p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.form-group-register label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.25rem;
+}
+
+.form-group-register input[type="text"],
+.form-group-register input[type="email"],
+.form-group-register input[type="password"] {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.625rem;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group-register input:focus {
+    border-color: #7D3C98;
+    outline: none;
+}
+
+.form-actions-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-button {
+  display: inline-block;
+  position: relative;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #7D3C98;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-button input[type="submit"] {
+  display: none;
+}
+
+.submit-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.submit-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 0, 150, 0.5), rgba(255, 0, 150, 0));
+  transform: skewX(-30deg);
+  transition: left 0.5s ease-in-out;
+  z-index: 0;
+}
+
+.submit-button:hover::before {
+  animation: slide-effect 0.5s ease-in-out forwards;
+}
+
+.submit-button:hover {
+  transform: scale(1.05);
+}
+
+.submit-button::before {
+    animation: auto-slide 4s infinite ease-in-out;
+}
+
+@keyframes slide-effect {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.login-form-group-href{
+    margin: 0 auto;
+}
+
+.login-form-group-href a {
+    font-size: 0.875rem;
+    color: #7D3C98;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-form-group-href a:hover {
+    color: #9b59b6;
+    text-decoration: underline;
+}
+.flash-container {
+    position: relative;
+}
+
+.flash-messages {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
+}
+
+.messagetxt {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    margin: 0.5rem auto;
+    border-radius: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: flash-fade 3s ease-in-out forwards;
+}
+
+.messagetxt.success {
+    background-color: #eafaf1;
+    color: #2ecc71;
+}
+
+.messagetxt.error {
+    background-color: #fdecea;
+    color: #e74c3c;
+}
+
+.messagetxt.warning {
+    background-color: #fff4e5;
+    color: #e67e22;
+}
+
+.messagetxt.info {
+    background-color: #e8f4fd;
+    color: #3498db;
+}
+
+@keyframes flash-fade {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@media (max-width: 768px) {
+    .content-container,
+    .register-container,
+    .register{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+    .register {
+        padding: 2rem;
+        gap: 1rem;
+    }
+
+    .register h1 {
+        font-size: 1.75rem;
+    }
+
+    .form-group-register label {
+        font-size: 0.95rem;
+    }
+
+    .form-group-register input[type="text"],
+    .form-group-register input[type="email"],
+    .form-group-register input[type="password"] {
+        padding: 0.65rem 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    .submit-button {
+        font-size: 0.95rem;
+        padding: 0.65rem;
+    }
+
+    .messagetxt {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-container,
+    .register-container,
+    .register{
+     width: 100% !important;
+     max-width: 100% !important;
+     margin: 0 !important;
+    }
+    .register {
+        padding: 1.25rem;
+        gap: 0.75rem;
+        border-radius: 1rem;
+    }
+
+    .register h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-group-register label {
+        font-size: 0.9rem;
+    }
+
+    .form-group-register input[type="text"],
+    .form-group-register input[type="email"],
+    .form-group-register input[type="password"] {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+        border-radius: 1.5rem;
+    }
+
+    .login-form-group-href a {
+        font-size: 0.8rem;
+    }
+
+    .messagetxt {
+        font-size: 0.75rem;
+    }
+}

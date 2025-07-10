@@ -1,0 +1,53 @@
+<!-- app/auth/templates/login.html -->
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+    <form action="" method="post" id="login-form" class="login">
+
+        <h1 class="login-title">Login</h1>
+        {{ form.hidden_tag() }}
+        <div class="login-form-group">
+            {{ form.mail.label(class_='') }}
+            {{ form.mail(class_='email-input') }}
+        </div>
+        <div class="login-form-group">
+            {{ form.psw.label(class_='') }}
+            {{ form.psw(class_='password-input') }}
+        </div>
+        <div class="login-form-group-checkbox">
+            {{ form.remember_me(class_='checkbox-input') }} {{ form.remember_me.label(class_='checkbox-label') }}
+        </div>
+        <div class="login-form-group-submit">
+            <label class="submit-button">
+                <input type="submit" value="Sign In">
+                <span>Sign In</span>
+            </label>
+        </div>
+        <div class="login-form-group-href">
+            <a href="{{url_for('auth.register')}}">Create an Account</a>
+        </div>
+        <div class="login-form-group">
+            <a href="" class="google-login-btn"><img width="30" src="/static/images/google-icon.png"></a>
+        </div>
+        <div class="flash-container">
+            <div class="flash-messages">
+                {% with flashed_message = get_flashed_messages(True) | first %}
+                {% if flashed_message %}
+                <div class="messagetxt {{ flashed_message[0] }}">{{ flashed_message[1] }}</div>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="overlay"></div>
+<div id="animation-container"></div>
+
+{% endblock %}

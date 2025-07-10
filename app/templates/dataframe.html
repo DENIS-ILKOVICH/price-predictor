@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<h1 class="main-title">Real Estate Data Table</h1>
+<p class="subtitle">This table displays the real estate dataset used to train the prediction model.</p>
+<hr class="hr-style">
+
+<button class="get-all-data-button" onclick="confirmGetAllData()">Load All Data</button>
+
+<div class="filter-container">
+    <div class="filter-group">
+        <button class="filter-button" onclick="filterData('price')">Price</button>
+        <button class="filter-button" onclick="filterData('district')">District</button>
+        <button class="filter-button" onclick="filterData('rooms')">Rooms</button>
+        <button class="filter-button" onclick="filterData('floor')">Floor</button>
+        <button class="filter-button" onclick="filterData('floors')">Floors</button>
+        <button class="filter-button" onclick="filterData('area')">Area</button>
+        <button class="filter-button" onclick="filterData('type')">Type</button>
+        <button class="filter-button" onclick="filterData('cond')">Condition</button>
+        <button class="filter-button" onclick="filterData('walls')">Walls</button>
+        <button class="filter-button" onclick="filterData('desc')">Description</button>
+    </div>
+
+    <div class="search-container">
+        <div class="info-container">
+            <div class="info-icon">𝑖</div>
+            <div class="info-popup">
+                <h4 style="margin-top: 0; color: #7D3C98;">Search Capabilities</h4>
+                <p>The system supports <strong>two search modes</strong> for values inside the <strong>dataframe</strong>:</p>
+
+                <ol style="margin-top: 10px; padding-left: 18px;">
+                    <li><strong>General Search</strong> — searches across all columns (supports text and numbers).</li>
+                    <li><strong>Advanced Search</strong> — enter column name, colon, and value. Example:
+                        <code style="background: #f1f1f1; padding: 2px 6px; border-radius: 4px;">ID:1</code>
+                    </li>
+                </ol>
+
+                <p style="margin-top: 10px;">Available fields for search:</p>
+                <ul style="padding-left: 16px;">
+                    <li><strong>Numeric:</strong> <code>id</code>, <code>price</code>, <code>floor</code>,
+                        <code>floors</code>, <code>area</code></li>
+                    <li><strong>Text:</strong> <code>district</code>, <code>type</code>, <code>cond</code>, <code>walls</code></li>
+                </ul>
+
+                <p style="margin-top: 10px; font-style: italic; color: #555;">
+                    Tip: use advanced format for more accurate results.
+                </p>
+            </div>
+        </div>
+        <input type="text" id="searchInput" placeholder="Enter search text">
+        <button class="search-button" onclick="searchData()">Search</button>
+        <label id="totalRecordsLabel">Total records: 0</label>
+    </div>
+</div>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Price</th>
+            <th>District</th>
+            <th>Rooms</th>
+            <th>Floor</th>
+            <th>Floors</th>
+            <th>Area</th>
+            <th>Type</th>
+            <th>Condition</th>
+            <th>Walls</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+</div>
+
+<div class="load-more-container">
+    <button id="loadMoreButton" onclick="loadMoreData()" class="load-more">+ Show More</button>
+</div>
+
+<div id="loadingAnimation" class="loading-animation" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+<button id="backToTop" onclick="scrollToTop()">
+    <span class="arrow">↑</span>
+    <span class="text">Top</span>
+</button>
+
+<script src="{{url_for('static', filename=js_href)}}"></script>
+
+{% endblock %}

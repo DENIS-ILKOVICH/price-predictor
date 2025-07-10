@@ -1,0 +1,251 @@
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<div class="predict-container">
+    <h1 class="main-title">Real Estate Price Prediction Calculator</h1>
+    <p class="subtitle">Simplify property valuation for owners, agents, and investors</p>
+
+    <div class="real-estate-form">
+        <div class="header-form-block">
+            <h3 class="head-form">Enter Property Parameters</h3>
+            <div class="info-container">
+                <div class="info-icon">𝑖</div>
+                <div class="info-popup">
+                    <h4 style="margin-top: 0; color: #7D3C98;">How to Use the PricePredictor Form?</h4>
+                    <p>This form contains <strong>8 input parameters</strong> grouped into three categories:</p>
+
+                    <ul style="padding-left: 16px;">
+                        <li><strong>Selectable Fields:</strong> <code>district</code>, <code>type</code>, <code>condition</code>, <code>walls</code></li>
+                        <li><strong>Numeric Fields:</strong> <code>rooms</code>, <code>floor</code>, <code>floors</code>, <code>area</code></li>
+                        <li><strong>Optional Text Field:</strong> <code>description</code> — improves prediction accuracy. It is recommended to provide a brief description in English with key phrases like <code>sea view</code>, <code>fully renovated</code>, <code>close to subway</code>, etc. This helps the model better evaluate the property.<br>
+                        <code style="background: #f1f1f1; padding: 2px 6px; border-radius: 4px;">⚠️ Only Latin characters are allowed. Symbols such as <code>/</code>, <code>{}</code>, <code><></code>, or <code></code> will be blocked by the system.</code></li>
+                    </ul>
+
+                    <p style="margin-top: 10px; font-style: italic; color: #555;">
+                        After entering all values, click the <strong>Calculate</strong> button to get the predicted property price.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <form id="predict-form">
+
+            <div class="input-select-container">
+                <label for="district">District</label>
+                <div class="custom-select" onclick="toggleDropdown(this)">
+                    <div class="custom-select__current">
+                        <span class="selected-option">Select an option</span>
+                        <span class="arrow">ᨆ</span>
+                    </div>
+                    <div class="custom-select__dropdown">
+                        <div class="custom-select__option" data-value="Kievsky"
+                             onclick="selectOption(this, 'district')">Kievsky
+                        </div>
+                        <div class="custom-select__option" data-value="Malinovsky"
+                             onclick="selectOption(this, 'district')">Malinovsky
+                        </div>
+                        <div class="custom-select__option" data-value="Primorsky"
+                             onclick="selectOption(this, 'district')">Primorsky
+                        </div>
+                        <div class="custom-select__option" data-value="Suvorovsky"
+                             onclick="selectOption(this, 'district')">Suvorovsky
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="district" id="district">
+            </div>
+
+            <div class="input-select-container">
+                <label for="type">Property Type</label>
+                <div class="custom-select" onclick="toggleDropdown(this)">
+                    <div class="custom-select__current">
+                        <span class="selected-option">Select an option</span>
+                        <span class="arrow">ᨆ</span>
+                    </div>
+                    <div class="custom-select__dropdown">
+                        <div class="custom-select__option" data-value="New" onclick="selectOption(this, 'type')">New Building</div>
+                        <div class="custom-select__option" data-value="Czech" onclick="selectOption(this, 'type')">Czech</div>
+                        <div class="custom-select__option" data-value="Special project" onclick="selectOption(this, 'type')">Special Project</div>
+                        <div class="custom-select__option" data-value="Khrushchevka" onclick="selectOption(this, 'type')">Khrushchevka</div>
+                        <div class="custom-select__option" data-value="Guest" onclick="selectOption(this, 'type')">Guest Room</div>
+                        <div class="custom-select__option" data-value="Old fund" onclick="selectOption(this, 'type')">Old Fund</div>
+                        <div class="custom-select__option" data-value="Kharkiv" onclick="selectOption(this, 'type')">Kharkiv</div>
+                        <div class="custom-select__option" data-value="Moscow" onclick="selectOption(this, 'type')">Moscow</div>
+                        <div class="custom-select__option" data-value="Cellular" onclick="selectOption(this, 'type')">Cellular</div>
+                        <div class="custom-select__option" data-value="Belgian" onclick="selectOption(this, 'type')">Belgian</div>
+                        <div class="custom-select__option" data-value="Stalinka" onclick="selectOption(this, 'type')">Stalinka</div>
+                        <div class="custom-select__option" data-value="Jugoslavsky" onclick="selectOption(this, 'type')">Yugoslavian</div>
+                        <div class="custom-select__option" data-value="A small family" onclick="selectOption(this, 'type')">Small Family</div>
+                        <div class="custom-select__option" data-value="Private house" onclick="selectOption(this, 'type')">Private House</div>
+                        <div class="custom-select__option" data-value="Under construction" onclick="selectOption(this, 'type')">Under Construction</div>
+                    </div>
+                </div>
+                <input type="hidden" name="type" id="type">
+            </div>
+
+            <div class="input-select-container">
+                <label for="cond">Condition</label>
+                <div class="custom-select" onclick="toggleDropdown(this)">
+                    <div class="custom-select__current">
+                        <span class="selected-option">Select an option</span>
+                        <span class="arrow">ᨆ</span>
+                    </div>
+                    <div class="custom-select__dropdown">
+                        <div class="custom-select__option" data-value="Renovation" onclick="selectOption(this, 'cond')">Renovated</div>
+                        <div class="custom-select__option" data-value="After builders" onclick="selectOption(this, 'cond')">After Builders</div>
+                        <div class="custom-select__option" data-value="After overhaul" onclick="selectOption(this, 'cond')">After Overhaul</div>
+                        <div class="custom-select__option" data-value="After makeup" onclick="selectOption(this, 'cond')">After Cosmetic Repair</div>
+                        <div class="custom-select__option" data-value="Residential clean" onclick="selectOption(this, 'cond')">Residential Cleaning</div>
+                        <div class="custom-select__option" data-value="Need. in cap. renovation" onclick="selectOption(this, 'cond')">Needs Capital Renovation</div>
+                        <div class="custom-select__option" data-value="Need. in cosm. renovation" onclick="selectOption(this, 'cond')">Needs Cosmetic Renovation</div>
+                        <div class="custom-select__option" data-value="Need. in tech. renovation" onclick="selectOption(this, 'cond')">Needs Technical Renovation</div>
+                        <div class="custom-select__option" data-value="Author's design" onclick="selectOption(this, 'cond')">Author's Design</div>
+                        <div class="custom-select__option" data-value="Modern design" onclick="selectOption(this, 'cond')">Modern Design</div>
+                        <div class="custom-select__option" data-value="Expanded clay-concrete" onclick="selectOption(this, 'cond')">Expanded Clay Concrete</div>
+                    </div>
+                </div>
+                <input type="hidden" name="cond" id="cond">
+            </div>
+
+            <div class="input-select-container">
+                <label for="walls">Wall Material</label>
+                <div class="custom-select" onclick="toggleDropdown(this)">
+                    <div class="custom-select__current">
+                        <span class="selected-option">Select an option</span>
+                        <span class="arrow">ᨆ</span>
+                    </div>
+                    <div class="custom-select__dropdown">
+                        <div class="custom-select__option" data-value="Brick" onclick="selectOption(this, 'walls')">Brick</div>
+                        <div class="custom-select__option" data-value="Monolith" onclick="selectOption(this, 'walls')">Monolithic</div>
+                        <div class="custom-select__option" data-value="Panel" onclick="selectOption(this, 'walls')">Panel</div>
+                        <div class="custom-select__option" data-value="Block-brick" onclick="selectOption(this, 'walls')">Block-Brick</div>
+                        <div class="custom-select__option" data-value="Shell rock" onclick="selectOption(this, 'walls')">Facing Stone</div>
+                        <div class="custom-select__option" data-value="Aerated concrete" onclick="selectOption(this, 'walls')">Aerated Concrete</div>
+                        <div class="custom-select__option" data-value="Foam concrete" onclick="selectOption(this, 'walls')">Foam Concrete</div>
+                        <div class="custom-select__option" data-value="Reed, dranka" onclick="selectOption(this, 'walls')">Reed, Dranka</div>
+                    </div>
+                </div>
+                <input type="hidden" name="walls" id="walls">
+            </div>
+
+            <div class="input-group">
+                <label for="rooms" class="input-label">Number of Rooms</label>
+                <div class="input-number-container">
+                    <input type="text" name="rooms" id="rooms" value="1" step="1" class="input-field"/>
+                    <div class="button-container">
+                        <button onclick="incrementValue('rooms', 1)" class="input-button">ᨈ</button>
+                        <button onclick="decrementValue('rooms', 1)" class="input-button">ᨆ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="floor" class="input-label">Floor</label>
+                <div class="input-number-container">
+                    <input type="text" name="floor" id="floor" value="1" step="1" class="input-field"/>
+                    <div class="button-container">
+                        <button onclick="incrementValue('floor', 1)" class="input-button">ᨈ</button>
+                        <button onclick="decrementValue('floor', 1)" class="input-button">ᨆ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="floors" class="input-label">Total Floors</label>
+                <div class="input-number-container">
+                    <input type="text" name="floors" id="floors" value="1" step="1" class="input-field"/>
+                    <div class="button-container">
+                        <button onclick="incrementValue('floors', 1)" class="input-button">ᨈ</button>
+                        <button onclick="decrementValue('floors', 1)" class="input-button">ᨆ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="area" class="input-label">Area, m²</label>
+                <div class="input-number-container">
+                    <input type="text" name="area" id="area" value="1" step="1" class="input-field" required/>
+                    <div class="button-container">
+                        <button onclick="incrementValue('area', 1)" class="input-button">ᨈ</button>
+                        <button onclick="decrementValue('area', 1)" class="input-button">ᨆ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="predict-textarea">
+                <label for="textarea" class="input-label">Description (optional)</label>
+                <textarea id="textarea" name="desc" rows="3" class="textarea-input"></textarea>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate</button>
+
+        </form>
+
+        <div class="result-predict-container">
+            <div class="result-predict-item">
+                <div class="result-predict-inner">
+                    <div class="result-price-block">
+                        <div class="result-avg-label">Average in District</div>
+                        <div class="result-avg-value" id="avg-district-price">-</div>
+                    </div>
+                    <div class="result-price-block">
+                        <div class="result-predict-label">Predicted Price</div>
+                        <div class="result-predict-value" id="predicted-price">-</div>
+                    </div>
+                    <div class="result-price-area">
+                        <div class="result-area-label">Price per m²</div>
+                        <div class="result-area-value" id="area-price">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="notation-block">
+                <br>
+                <hr>
+                <p style="margin-top: 10px; font-size: 0.85em; color: #777; line-height: 1.4;">
+                    The model used for prediction is trained on Odessa city data from 2020 and demonstrates <strong style="font-weight: 500;">high accuracy</strong> — explaining approximately <strong style="font-weight: 500;">{{ (metrics['R2'] * 100) | round(0) | int }}% of the variance</strong> in real estate prices. The average prediction error is approximately <strong style="font-weight: 500;">${{ metrics['MAE'] | round(2) }}</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="open-modal" class="open-modal" style="display: none;">My Predictions</button>
+
+<div class="modal hidden">
+    <div class="modal-header">
+    <h2>Prediction History</h2>
+        <button class="close-modal" aria-label="Close modal">
+        <span class="circle"></span>
+        <span class="cross">⨯</span></button></div>
+    <div id="card-container" class="card-container"></div>
+
+</div>
+
+<div id="logoanimationOverlay" class="animation-overlay hidden">
+  <div class="animation-box">
+    <div class="logo-container-animation">
+      <div class="house-frame"></div>
+      <div class="house-inner"></div>
+      <div class="window">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{url_for('static', filename=js_href1)}}"></script>
+<script src="{{url_for('static', filename=js_href2)}}"></script>
+
+{% endblock %}

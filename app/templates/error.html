@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="image">
+        <img src="{{url_for('static', filename='images/error.png')}}">
+    </div>
+    <div class="error-message">
+        <h1>Error {{ code }}</h1>
+        <p>{{ description }}</p>
+    </div>
+</div>
+{% endblock %}

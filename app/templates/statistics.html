@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename=style_href) }}">
+{% endblock %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1 class="main-title">Real Estate Statistics</h1>
+<p class="subtitle">Here you can view the real estate data statistics for the city of Odessa (2020)</p>
+<hr class="hr-style">
+
+<div class="statistics-container">
+    <div class="section">
+        <h2>Top 5 Most Expensive Apartments</h2>
+        <div id="top5-expensive" class="cards-container"></div>
+    </div>
+
+    <div class="section">
+        <h2>Top 5 Cheapest Apartments</h2>
+        <div id="top5-cheap" class="cards-container"></div>
+    </div>
+
+    <div class="section">
+        <h2>Average Price by District</h2>
+        <div class="split-container">
+            <div id="avg-price-district" class="numeric-container left-column"></div>
+            <div class="chart-container right-column">
+                <canvas id="avg-price-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Number of Apartments by Number of Rooms</h2>
+        <div class="split-container">
+            <div id="rooms-distribution" class="numeric-container left-column"></div>
+            <div class="chart-container right-column">
+                <canvas id="rooms-distribution-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Distribution by Property Type</h2>
+        <div class="split-container">
+            <div id="type-distribution" class="numeric-container left-column"></div>
+            <div class="chart-container right-column">
+                <canvas id="type-distribution-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="section statistics-section">
+        <h2>Summary Statistics</h2>
+        <div id="summary-stats" class="stats-grid"></div>
+    </div>
+
+    <button class="render-chart-data-button" onclick="renderChartData()">Show Chart for All Apartments</button>
+</div>
+
+<canvas id="priceAreaChart" width="400" height="400"></canvas>
+
+<button id="backToTop" onclick="scrollToTop()">
+    <span class="arrow">↑</span>
+    <span class="text">Top</span>
+</button>
+
+<script src="{{ url_for('static', filename=js_href) }}"></script>
+
+{% endblock %}

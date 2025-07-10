@@ -1,0 +1,1 @@
+# app/models/real_estate/__init_.py
