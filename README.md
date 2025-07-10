@@ -327,7 +327,7 @@ The video below showcases animated UI elements:
 - Prediction loading screen  
 - Login animation  
 - Auto-login animation (token-based)  
-[Video file]()
+[Video file](https://github.com/DENIS-ILKOVICH/price-predictor/tree/main/.assets/videos)
 
 ---
 
