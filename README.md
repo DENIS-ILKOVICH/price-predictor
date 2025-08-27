@@ -3,6 +3,25 @@
 PricePredictor is a web application for predicting real estate prices based on user-provided parameters using machine learning technologies. The project features a user-friendly interface, authorization support, data analysis, and visual presentation of predictions.
 
 ---
+## Table of Contents
+
+- [Overview](#overview)
+- [Core Features](#core-features)
+- [Technologies](#technologies-)
+- [List of Available Website Pages](#list-of-available-website-pages-)
+  - [Home Page](#1-home-page-)
+  - [Predict Page](#2-predict-page-)
+  - [Predictions Page](#3-predictions-page-)
+  - [DataFrame Page](#4-dataframe-page-)
+  - [Statistics Page](#5-statistics-page-)
+  - [Authorization Page](#6-authorization-page-)
+  - [Profile Page](#7-profile-page-)
+- [Architecture of the System](#architecture-of-the-system-)
+- [Sequence Diagram](#sequence-diagram-)
+- [Profile Functionality](#profile-functionality-)
+- [Interactive Animations](#interactive-animations-)
+- [How to Run the Project](#how-to-run-the-project-)
+- [Author](#author-)
 
 ## Overview
 
@@ -11,13 +30,13 @@ PricePredictor is a web application for predicting real estate prices based on u
 The app provides:
 - A full-featured web interface for user interaction
 - An authorization/registration system
-- Statistics and analytics
 - Prediction history tracking
+- Statistics and analytics
 - A flexible architecture for future scaling
 
 ---
 
-## Core Features
+## Core Features [⬆](#table-of-contents "Back to Top")
 
 ### Authentication and Authorization
 - User registration  
@@ -58,7 +77,7 @@ The app provides:
 
 ---
 
-## Technologies
+## Technologies [⬆](#table-of-contents "Back to Top")
 
 - **Backend:** Python 3, Flask  
 - **Machine Learning:** scikit-learn, pandas, numpy  
@@ -73,7 +92,7 @@ screenshots of the web application.
 
 ---
 
-## List of Available Website Pages
+## List of Available Website Pages [⬆](#table-of-contents "Back to Top")
 
 ### 1. Home Page
 This page introduces users to the purpose and functionality of the project.  
@@ -84,7 +103,7 @@ It explains how the system assists in predicting real estate prices.
 
 ---
 
-### 2. Predict Page
+### 2. Predict Page [⬆](#table-of-contents "Back to Top")
 Core feature of the system. Users enter property parameters into a clean, interactive form, and receive a predicted price.
 
 ![Prediction Form and Result](.assets/images/predict.png)
@@ -92,7 +111,7 @@ Core feature of the system. Users enter property parameters into a clean, intera
 
 ---
 
-### 3. Predictions Page
+### 3. Predictions Page [⬆](#table-of-contents "Back to Top")
 Displays all prediction requests made by users.  
 Includes filtering by price or ID for both personal and public results.
 
@@ -101,7 +120,7 @@ Includes filtering by price or ID for both personal and public results.
 
 ---
 
-### 4. DataFrame Page
+### 4. DataFrame Page [⬆](#table-of-contents "Back to Top")
 Shows the dataset used for model training in a searchable table.  
 Supports:
 - **Simple Search** (text/numbers with automatic filtering)
@@ -112,7 +131,7 @@ Supports:
 
 ---
 
-### 5. Statistics Page
+### 5. Statistics Page [⬆](#table-of-contents "Back to Top")
 Provides analytical charts and histograms.  
 Based on real estate data from Odesa, 2020.
 
@@ -121,7 +140,7 @@ Based on real estate data from Odesa, 2020.
 
 ---
 
-### 6. Authorization Page
+### 6. Authorization Page [⬆](#table-of-contents "Back to Top")
 Login and registration with "Remember Me" token + secure long-term cookie.  
 Supports auto-login for returning users.
 
@@ -130,7 +149,7 @@ Supports auto-login for returning users.
 
 ---
 
-### 7. Profile Page
+### 7. Profile Page [⬆](#table-of-contents "Back to Top")
 Displays user prediction history in collapsible view.  
 Includes:
 - Activity chart  
@@ -143,7 +162,7 @@ Includes:
 
 ---
 
-## Architecture of the System
+## Architecture of the System [⬆](#table-of-contents "Back to Top")
 
 ### Project Architecture Overview
 
@@ -283,7 +302,7 @@ PricePredictor/
 
 ---
 
-## Sequence Diagram
+## Sequence Diagram [⬆](#table-of-contents "Back to Top")
 
 This diagram illustrates how a prediction request flows through the system.
 
@@ -306,7 +325,7 @@ This diagram illustrates how a prediction request flows through the system.
 
 ---
 
-## Profile Functionality
+## Profile Functionality [⬆](#table-of-contents "Back to Top")
 
 ### Account Settings:
 - Change name (with validation)
@@ -320,49 +339,64 @@ Each setting follows a secure and clear two-step process.
 
 ---
 
-## Interactive Animations
+## Interactive Animations [⬆](#table-of-contents "Back to Top")
 
 The video below showcases animated UI elements:
 - Logo animation  
 - Prediction loading screen  
 - Login animation  
-- Auto-login animation (token-based)  
+- Auto-login animation  
 [Video file](https://github.com/DENIS-ILKOVICH/price-predictor/tree/main/.assets/videos)
 
 ---
 
+## How to Run the Project [⬆](#table-of-contents "Back to Top")
 
-## How to Run the Project
+**<span style="color: orange;">•</span>&nbsp;&nbsp;Environment Variables / .env:**
 
-1. **Create and activate a virtual environment:**
+This project uses a `.env` file to store configuration and sensitive information.  
+Before running the project, make sure you have a `.env` file in the root directory with the following variables:
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate      # for Linux/macOS
-    venv\Scripts\activate         # for Windows
-    ```
 
-2. **Install dependencies:**
+<ul>
+  <li><span style="color: orange;">SECRET_KEY</span> = your-secret-key-here</li>
+  <li><span style="color: orange;">MAIL_USERNAME</span> = your-email@example.com</li>
+  <li><span style="color: orange;">MAIL_PASSWORD</span> = xwya kdez kxsj lbll</li>
+  <li><span style="color: orange;">MAIL_DEFAULT_SENDER</span> = your-email@example.com</li>
+  <li><span style="color: orange;">MAIL_SERVER</span> = smtp.gmail.com</li>
+  <li><span style="color: orange;">MAIL_PORT</span> = 587</li>
+  <li><span style="color: orange;">MAIL_USE_TLS</span> = True</li>
+</ul>
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+> Replace `your_secret_key` with a strong random string.  
+> If you’re missing the `.env` file, the application **will not start**.
 
-3. **Run the application:**
+**<span style="color: orange;">•</span>&nbsp;&nbsp;Create and activate a virtual environment:**
+```bash
+  python -m venv venv
+  source venv/bin/activate      # for Linux/macOS
+  venv\Scripts\activate         # for Windows
+  ```
 
-    ```bash
-    python run.py
-    ```
+**<span style="color: orange;">•</span>&nbsp;&nbsp;Install dependencies:**
+```bash
+  pip install -r requirements.txt
+  ```
 
-4. **Open in your browser:**
+**<span style="color: orange;">•</span>&nbsp;&nbsp;Run the application:**
+```bash
+  python run.py
+ ```
 
-    ```
-    http://127.0.0.1:5000
-    ```
+**<span style="color: orange;">•</span>&nbsp;&nbsp;Open in your browser:**
+
+```bash
+  http://127.0.0.1:5000
+```
 
 ---
 
-## Author
+## Author [⬆](#table-of-contents "Back to Top")
 
 **Denys Ilkovych**  
 Developer and initiator of the **PricePredictor** project.
