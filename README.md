@@ -30,8 +30,8 @@ PricePredictor is a web application for predicting real estate prices based on u
 The app provides:
 - A full-featured web interface for user interaction
 - An authorization/registration system
-- Prediction history tracking
 - Statistics and analytics
+- Prediction history tracking
 - A flexible architecture for future scaling
 
 ---
