@@ -9,7 +9,7 @@ PricePredictor is a web application for predicting real estate prices based on u
 - [Core Features](#core-features)
 - [Technologies](#technologies-)
 - [List of Available Website Pages](#list-of-available-website-pages-)
-  - [Home Page](#1-home-page-)
+  - [Home Page](#1-home-page)
   - [Predict Page](#2-predict-page-)
   - [Predictions Page](#3-predictions-page-)
   - [DataFrame Page](#4-dataframe-page-)
@@ -107,7 +107,10 @@ It explains how the system assists in predicting real estate prices.
 Core feature of the system. Users enter property parameters into a clean, interactive form, and receive a predicted price.
 
 ![Prediction Form and Result](.assets/images/predict.png)
-<p align="center"><small><small><em>Image: Prediction input and result section</em></small></small></p>
+<p align="center"><small><small><em>Image: Example of filling out the prediction form and using the <code>predict()</code> function</em></small></small></p>
+
+![Prediction Demo Animation](.assets/images/get_predict.gif)
+<p align="center"><small><small><em>GIF: Demonstration of the prediction process</em></small></small></p>
 
 ---
 
@@ -144,8 +147,13 @@ Based on real estate data from Odesa, 2020.
 Login and registration with "Remember Me" token + secure long-term cookie.  
 Supports auto-login for returning users.
 
-![Login Register Interface](.assets/images/Login&Register.png)
-<p align="center"><small><small><em>Image: Login and registration</em></small></small></p>
+![Login Register Interface](.assets/images/login_page.gif)
+<p align="center"><small><small><em>GIF: Login page</em></small></small></p>
+
+
+![Login Register Interface](.assets/images/register.gif)
+<p align="center"><small><small><em>GIF: Registration page</em></small></small></p>
+
 
 ---
 
@@ -157,7 +165,7 @@ Includes:
 - Option to delete predictions  
 - Editable account info
 
-![User Profile](.assets/images/profile.png)
+![User Profile](.assets/images/profile_page.png)
 <p align="center"><small><small><em>Image: User profile with prediction history </em></small></small></p>
 
 ---

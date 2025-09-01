@@ -420,7 +420,7 @@
     transform: rotate(calc(var(--rotation, 0deg) + 45deg));
 }
 
-    .settings-btn {
+.settings-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -428,7 +428,6 @@
   color: #7f00ff;
   font-size: 20px;
   transition: transform 0.2s ease, color 0.3s ease;
-
 }
 
 .settings-btn:hover {
