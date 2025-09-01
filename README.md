@@ -406,6 +406,6 @@ Before running the project, make sure you have a `.env` file in the root directo
 
 ## Author [⬆](#table-of-contents "Back to Top")
 
-**Denys Ilkovych**  
+**Denys Ilkovich**  
 Developer and initiator of the **PricePredictor** project.
 
